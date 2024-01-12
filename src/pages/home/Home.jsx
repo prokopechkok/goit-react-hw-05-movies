@@ -1,40 +1,35 @@
-import { Loader } from 'components/loader/Loader';
-import { MoviesList } from 'components/moviesList/MoviesList';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { requestTrendingMovies } from 'services/api';
+import { MoviesList } from 'components/moviesList/MoviesList';
+import { Loader } from 'components/loader/Loader';
+// import { useLocation } from 'react-router-dom';
 
-const Home = async () => {
+const Home = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [isError, setIsError] = useState(null);
 
   useEffect(() => {
-    const abortController = new AbortController();
     const getTrendingMovies = async () => {
       try {
         setIsLoading(true);
-        setError(null);
-        const trendingMovies = await requestTrendingMovies({
-          signal: abortController.signal,
-        });
+        setIsError(null);
+        const trendingMovies = await requestTrendingMovies();
         setMovies(trendingMovies);
       } catch (error) {
-        setError(error.message);
+        setIsError(error.message);
       } finally {
         setIsLoading(false);
       }
     };
     getTrendingMovies();
-    return () => {
-      abortController.abort();
-    };
   }, []);
 
   return (
     <div>
       <h2>Trending today</h2>
       {isLoading && <Loader />}
-      {error && (
+      {isError && (
         <p>
           Sorry... Some error occured while loading movies. Please try again
           later.

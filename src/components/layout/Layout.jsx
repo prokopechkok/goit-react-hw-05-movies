@@ -1,8 +1,9 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { Suspense } from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
 import css from './Layout.module.css';
+import { Loader } from 'components/loader/Loader';
 
-export const Layout = ({ children }) => {
+const Layout = () => {
   return (
     <div>
       <header>
@@ -12,7 +13,7 @@ export const Layout = ({ children }) => {
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  `${css.navLink} ${isActive ? css.active : ''}`
+                  `${css.headerLink} ${isActive ? css.active : ''}`
                 }
               >
                 Home
@@ -22,7 +23,7 @@ export const Layout = ({ children }) => {
               <NavLink
                 to="/movies"
                 className={({ isActive }) =>
-                  `${css.navLink} ${isActive ? css.active : ''}`
+                  `${css.headerLink} ${isActive ? css.active : ''}`
                 }
               >
                 Movies
@@ -31,7 +32,10 @@ export const Layout = ({ children }) => {
           </ul>
         </nav>
       </header>
-      <main>{children}</main>
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
+export default Layout;

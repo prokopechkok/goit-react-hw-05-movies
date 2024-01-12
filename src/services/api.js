@@ -1,12 +1,40 @@
 import axios from 'axios';
+import { AUTH_TOKEN } from 'utils/constants';
+
+axios.defaults.baseURL = 'https://api.themoviedb.org/3';
+axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 
 export const requestTrendingMovies = async () => {
-  const AUTH_TOKEN =
-    'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMjgyODliZWYxZTEzYTJiZjE5N2ZjMDZhZmUxMjMzNiIsInN1YiI6IjY1OWZlNDcxM2NkMTJjMDEyZGYwNjY5YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.yA_qEgcZekO0ca6PfwxFIzMCuYarZwWINgSQqc-fQgI';
+  const url = '/trending/movie/day?language=en-US';
+  const { data } = await axios.get(url);
 
-  axios.defaults.baseURL = 'https://api.themoviedb.org/3';
-  axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+  return data.results;
+};
 
-  const { data } = await axios.get('/trending/movie/day?language=en-US');
+export const requestMovieById = async movieId => {
+  const url = `/movie/${movieId}?language=en-US`;
+  const { data } = await axios.get(url);
+
+  return data;
+};
+
+export const requestMovieByQuery = async searchQuery => {
+  const url = `/search/movie?query=${searchQuery}`;
+  const { data } = await axios.get(url);
+
+  return data.results;
+};
+
+export const requestMovieCast = async movieId => {
+  const url = `/movie/${movieId}/credits?language=en-US`;
+  const { data } = await axios.get(url);
+
+  return data.cast;
+};
+
+export const requestReviews = async movieId => {
+  const url = `/movie/${movieId}/reviews?language=en-US`;
+  const { data } = await axios.get(url);
+
   return data.results;
 };
