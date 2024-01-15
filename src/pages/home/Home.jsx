@@ -3,6 +3,7 @@ import { requestTrendingMovies } from 'services/api';
 import { MoviesList } from 'components/moviesList/MoviesList';
 import { Loader } from 'components/loader/Loader';
 // import { useLocation } from 'react-router-dom';
+import css from './Home.module.css';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -27,10 +28,10 @@ const Home = () => {
 
   return (
     <div>
-      <h2>Trending today</h2>
+      <h2 className={css.title}>Trending today</h2>
       {isLoading && <Loader />}
       {isError && (
-        <p>
+        <p className={css.title}>
           Sorry... Some error occured while loading movies. Please try again
           later.
         </p>

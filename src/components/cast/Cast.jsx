@@ -2,8 +2,9 @@ import { Loader } from 'components/loader/Loader';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { requestMovieCast } from 'services/api';
-import { IMAGE_URL_BASE } from 'utils/constants';
-import default_image from '../../images/default-featured-image.png.jpg';
+import { IMAGE_URL_BASE, default_image } from 'utils/constants';
+import css from './Cast.module.css';
+
 const Cast = () => {
   const { movieId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
@@ -31,13 +32,13 @@ const Cast = () => {
     <>
       {isLoading && <Loader />}
       {isError && (
-        <p>
+        <p className={css.castError}>
           Sorry... Some error occured while loading movie. Please try again
           later.
         </p>
       )}
 
-      <ul>
+      <ul className={css.castList}>
         {!isLoading &&
           !isError &&
           castInfo &&
@@ -46,9 +47,9 @@ const Cast = () => {
               ? `${IMAGE_URL_BASE}${profile_path}`
               : default_image;
             return (
-              <li key={id}>
-                <img src={imagePath} alt={name} />
-                <ul>
+              <li key={id} className={css.castItem}>
+                <img src={imagePath} alt={name} className={css.image} />
+                <ul className={css.castInfo}>
                   <li>{name}</li>
                   <li>{`Character: ${character}`}</li>
                 </ul>

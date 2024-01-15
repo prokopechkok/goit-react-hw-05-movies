@@ -7,11 +7,8 @@ import {
   useParams,
 } from 'react-router-dom';
 import { Loader } from 'components/loader/Loader';
-
 import { requestMovieById } from 'services/api';
-import { IMAGE_URL_BASE } from 'utils/constants';
-import default_image from '../../images/default-featured-image.png.jpg';
-
+import { IMAGE_URL_BASE, default_image } from 'utils/constants';
 import css from './MovieDetails.module.css';
 
 const MovieDetails = () => {
@@ -53,7 +50,7 @@ const MovieDetails = () => {
     <>
       {isLoading && <Loader />}
       {isError && (
-        <p>
+        <p className={css.text}>
           Sorry... Some error occured while loading movie. Please try again
           later.
         </p>
@@ -61,29 +58,33 @@ const MovieDetails = () => {
       <div>
         {!isLoading && movie && (
           <div>
-            <Link to={backLinkRef.current}>Go back</Link>
-            <div>
-              <img src={`${imagePath}`} alt={title} width="100" />
-              <div>
-                <h2>
+            <Link to={backLinkRef.current} className={css.backLink}>
+              Go back
+            </Link>
+            <div className={css.movieDetailsBlock}>
+              <img src={`${imagePath}`} alt={title} className={css.image} />
+              <div className={css.movieInfo}>
+                <h2 className={css.movieTitle}>
                   {title} ({release_date.slice(0, 4)})
                 </h2>
-                <p>{`User score: ${score} %`}</p>
-                <ul>
+                <p className={css.text}>{`User score: ${score} %`}</p>
+                <ul className={css.infoList}>
                   <li>
-                    <h3>Overview</h3>
-                    <p>{overview}</p>
+                    <h3 className={css.subTitle}>Overview</h3>
+                    <p className={css.text}>{overview}</p>
                   </li>
                   <li>
-                    <h4>Genres</h4>
-                    <p>{genres.map(({ name }) => name).join(' ')}</p>
+                    <h4 className={css.subTitle}>Genres</h4>
+                    <p className={css.text}>
+                      {genres.map(({ name }) => name).join(' ')}
+                    </p>
                   </li>
                 </ul>
               </div>
             </div>
             <div>
-              <p>Additional information</p>
-              <ul>
+              <p className={css.text}>Additional information</p>
+              <ul className={css.linksList}>
                 <li>
                   <NavLink
                     to="cast"

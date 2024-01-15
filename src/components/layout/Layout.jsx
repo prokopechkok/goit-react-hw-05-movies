@@ -1,14 +1,14 @@
 import React, { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import css from './Layout.module.css';
 import { Loader } from 'components/loader/Loader';
+import css from './Layout.module.css';
 
 const Layout = () => {
   return (
     <div>
       <header>
         <nav>
-          <ul>
+          <ul className={css.headerNav}>
             <li>
               <NavLink
                 to="/"
@@ -32,9 +32,11 @@ const Layout = () => {
           </ul>
         </nav>
       </header>
-      <Suspense fallback={<Loader />}>
-        <Outlet />
-      </Suspense>
+      <main className={css.main}>
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
+      </main>
     </div>
   );
 };

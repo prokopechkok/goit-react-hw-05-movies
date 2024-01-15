@@ -1,9 +1,10 @@
 import { Loader } from 'components/loader/Loader';
 import { MoviesList } from 'components/moviesList/MoviesList';
 import { SearchForm } from 'components/searchForm/SearchForm';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { requestMovieByQuery } from 'services/api';
+import css from './Movies.module.css';
 
 const Movies = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -41,7 +42,7 @@ const Movies = () => {
         </p>
       )}
       <SearchForm />
-      {movies && <MoviesList movies={movies} />}
+      {movies && <MoviesList movies={movies} className={css.moviesList} />}
     </div>
   );
 };

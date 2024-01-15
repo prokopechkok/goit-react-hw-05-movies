@@ -1,0 +1,18 @@
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.reviewsItem {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.author {
+  font-size: 18px;
+  font-weight: 700;
+}
+.text {
+  font-size: 18px;
+  text-align: justify;
+}

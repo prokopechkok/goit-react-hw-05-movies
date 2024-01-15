@@ -1,4 +1,65 @@
+.backLink {
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 24px;
+  color: green;
+  cursor: pointer;
+  text-decoration: none;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  touch-action: manipulation;
+  transition: all 250ms linear;
+  &:hover {
+    font-weight: 700;
+    transform: scale(1.1);
+  }
+}
+
+.movieDetailsBlock {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 24px;
+}
+.image {
+  width: 30%;
+  max-width: 400px;
+}
+.movieInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.movieTitle {
+  font-size: 24px;
+  font-weight: 700;
+}
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.text {
+  text-align: justify;
+  font-size: 18px;
+}
+.subTitle {
+  font-size: 20px;
+  font-weight: bolder;
+  margin-bottom: 15px;
+}
+.linksList {
+  margin: 24px 0;
+  list-style: circle;
+  margin-left: 25px;
+  color: green;
+}
 .detailsLink {
+  font-size: 18px;
+  &:hover {
+    font-weight: 700;
+  }
 }
 .active {
+  font-weight: 700;
 }

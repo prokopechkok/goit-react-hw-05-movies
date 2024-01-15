@@ -1,0 +1,25 @@
+.castList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.castItem {
+  display: flex;
+  gap: 20px;
+  height: 250px;
+}
+.image {
+  height: 100%;
+  max-width: 167px;
+  overflow: hidden;
+}
+.castInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 18px;
+  margin-top: 20px;
+}
+.castError {
+  font-size: 20px;
+}

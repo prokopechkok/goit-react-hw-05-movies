@@ -1,8 +1,9 @@
 import { Loader } from 'components/loader/Loader';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { requestReviews } from 'services/api';
+import css from './Reviews.module.css';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -31,24 +32,24 @@ const Reviews = () => {
     <>
       {isLoading && <Loader />}
       {isError && (
-        <p>
+        <p className={css.text}>
           Sorry... Some error occured while loading movie. Please try again
           later.
         </p>
       )}
-      <ul>
+      <ul className={css.reviewsList}>
         {!isLoading && !isError && reviews.length > 0 ? (
           reviews.map(({ id, author, content }) => {
             return (
-              <li key={id}>
-                <h4>{`Author: ${author}`}</h4>
-                <p>{content}</p>
+              <li key={id} className={css.reviewsItem}>
+                <h4 className={css.author}>{`Author: ${author}`}</h4>
+                <p className={css.text}>{content}</p>
               </li>
             );
           })
         ) : (
           <li>
-            <p>We don't have any reviews for the film</p>
+            <p className={css.text}>We don't have any reviews for the film</p>
           </li>
         )}
       </ul>
